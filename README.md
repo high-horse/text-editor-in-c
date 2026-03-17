@@ -39,7 +39,8 @@ Or build from source: https://www.raylib.com/
 ## 🔧 Compilation
 
 ```bash
-gcc editor.c -o editor -lraylib -lm -ldl -lpthread -lGL -lrt -lX11
+make build // for local build
+make build-static // for portability
 ```
 
 > Linking flags may vary depending on your OS.
