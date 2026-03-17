@@ -1,1 +1,117 @@
-# text-editor-in-c
+# Text Editor in C (Raylib)
+
+A simple graphical text editor written in C using the raylib library. This project demonstrates how to build a basic text editor with a custom UI, real-time rendering, and keyboard input handling.
+
+## 🚀 Features
+
+* Graphical user interface (window-based)
+* Real-time text rendering
+* Keyboard input handling
+* Open and edit text files
+* Save changes to file
+* Cursor movement and basic editing
+* Lightweight and fast
+
+## 🛠️ Built With
+
+* C Programming Language
+* raylib (graphics & input handling library)
+
+## 📦 Getting Started
+
+### Prerequisites
+
+* GCC or any C compiler
+* raylib installed on your system
+
+#### Install raylib (Linux example)
+
+```bash
+sudo apt install libraylib-dev
+```
+
+Or build from source: https://www.raylib.com/
+
+## 🔧 Compilation
+
+```bash
+gcc editor.c -o editor -lraylib -lm -ldl -lpthread -lGL -lrt -lX11
+```
+
+> Linking flags may vary depending on your OS.
+
+## ▶️ Run the Editor
+
+```bash
+./editor
+```
+
+## 🎮 Controls
+
+| Key        | Action           |
+| ---------- | ---------------- |
+| Arrow Keys | Move cursor      |
+| Enter      | New line         |
+| Backspace  | Delete character |
+| Ctrl + S   | Save file        |
+| Ctrl + Q   | Quit editor      |
+
+> Controls depend on your implementation and may vary.
+
+## 🖥️ How It Works
+
+* Uses raylib to create a window and render text
+* Handles keyboard input frame-by-frame
+* Maintains a text buffer in memory
+* Updates and redraws the screen continuously
+
+## 📂 Project Structure
+
+```
+.
+├── editor.c        # Main source code
+├── README.md       # Documentation
+```
+
+## 🧠 Learning Goals
+
+This project helps you understand:
+
+* Building GUIs in C without heavy frameworks
+* Real-time rendering loops
+* Keyboard input handling in graphical apps
+* Text buffer management
+* File I/O operations
+
+## ⚠️ Limitations
+
+* Single file editing only
+* No syntax highlighting
+* No undo/redo
+* Basic UI design
+
+## 🔮 Future Improvements
+
+* Syntax highlighting
+* Multiple file tabs
+* Mouse support
+* Scrollable viewport
+* Font customization
+* Undo/redo system
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a pull request
+
+## 📜 License
+
+This project is open-source and available under the MIT License.
+
+## 🙌 Acknowledgements
+
+Built using raylib — a simple and easy-to-use library for learning graphics programming in C.
