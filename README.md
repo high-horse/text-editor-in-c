@@ -75,7 +75,7 @@ make build-static // for portability
 
 ```
 .
-├── arc/main.c      # Main source code
+├── src/main.c      # Main source code
 ├── README.md       # Documentation
 ```
 
