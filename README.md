@@ -2,6 +2,10 @@
 
 A simple graphical text editor written in C using the raylib library. This project demonstrates how to build a basic text editor with a custom UI, real-time rendering, and keyboard input handling.
 
+## 📸 Screenshot
+
+![Text Editor UI](assets/editor.png)
+
 ## 🚀 Features
 
 * Graphical user interface (window-based)
