@@ -39,7 +39,8 @@ Or build from source: https://www.raylib.com/
 ## 🔧 Compilation
 
 ```bash
-gcc editor.c -o editor -lraylib -lm -ldl -lpthread -lGL -lrt -lX11
+make build // for local build
+make build-static // for portability
 ```
 
 > Linking flags may vary depending on your OS.
@@ -47,7 +48,8 @@ gcc editor.c -o editor -lraylib -lm -ldl -lpthread -lGL -lrt -lX11
 ## ▶️ Run the Editor
 
 ```bash
-./editor
+./bin/main // for local build
+./build/linux/text // for static build
 ```
 
 ## 🎮 Controls
@@ -73,7 +75,7 @@ gcc editor.c -o editor -lraylib -lm -ldl -lpthread -lGL -lrt -lX11
 
 ```
 .
-├── editor.c        # Main source code
+├── src/main.c      # Main source code
 ├── README.md       # Documentation
 ```
 
@@ -94,7 +96,7 @@ This project helps you understand:
 * No undo/redo
 * Basic UI design
 
-## 🔮 Future Improvements
+## 🔮 Future Improvements idk
 
 * Syntax highlighting
 * Multiple file tabs
@@ -102,20 +104,3 @@ This project helps you understand:
 * Scrollable viewport
 * Font customization
 * Undo/redo system
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Open a pull request
-
-## 📜 License
-
-This project is open-source and available under the MIT License.
-
-## 🙌 Acknowledgements
-
-Built using raylib — a simple and easy-to-use library for learning graphics programming in C.
