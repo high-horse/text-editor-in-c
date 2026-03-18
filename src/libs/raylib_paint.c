@@ -2,8 +2,7 @@
 #include "globals.h"
 #include <raylib.h>
 #include <stdio.h>
-
-
+#include <string.h>
 
 // Utility: get line index in buffer
 int get_line_index(DoublyLinkedList *buffer, Line *line) {
@@ -123,3 +122,68 @@ void update_scroll(DoublyLinkedList *buffer, int line_height, int win_h) {
     if (scroll_y < 0) scroll_y = 0;
 }
 
+void handle_mouse_click(DoublyLinkedList *buffer, Font font, float fontSize,
+                        int line_height, int gutter_width, int win_h) {
+    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) return;
+    
+    Vector2 mouse = GetMousePosition();
+    int status_height = 25;
+    
+    // Ignore clicks on gutter or status bar
+    if (mouse.x < gutter_width || mouse.y > win_h - status_height) return;
+    
+    // Calculate target line
+    int clicked_line = (mouse.y + scroll_y - PADDING_Y) / line_height;
+    
+    // Clamp to valid line range
+    int line_count = 0;
+    Line *tmp = buffer->head;
+    while (tmp) { line_count++; tmp = tmp->next; }
+    
+    if (clicked_line < 0) clicked_line = 0;
+    if (clicked_line >= line_count) clicked_line = line_count - 1;
+    
+    // Find target line node
+    Line *target = buffer->head;
+    for (int i = 0; i < clicked_line && target; i++) {
+        target = target->next;
+    }
+    
+    if (!target) return;
+    
+    // Calculate target column by measuring text widths
+    float rel_x = mouse.x - gutter_width;
+    size_t len = strlen(target->text);
+    size_t col = 0;
+    
+    // Binary search for closest character position
+    size_t low = 0, high = len;
+    while (low < high) {
+        size_t mid = (low + high + 1) / 2;
+        float width = MeasureTextLen(target->text, mid, font, fontSize);
+        
+        if (width < rel_x) {
+            low = mid;
+        } else {
+            high = mid - 1;
+        }
+    }
+    col = low;
+    
+    // Check if closer to next character
+    if (col < len) {
+        float w1 = MeasureTextLen(target->text, col, font, fontSize);
+        float w2 = MeasureTextLen(target->text, col + 1, font, fontSize);
+        if (rel_x - w1 > w2 - rel_x) {
+            col++;
+        }
+    }
+    
+    // Update cursor
+    buffer->current_line = target;
+    buffer->cursor_col = col;
+    
+    // Reset blink
+    cursor_visible = true;
+    cursor_blink_timer = 0.0f;
+}

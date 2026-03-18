@@ -1,10 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
-#include <string.h>
-#include <raylib.h>
 #include <time.h>
-#include "libs/linked_list.h"
 #include "libs/font_data.h"
 #include "libs/raylib_paint.h"
 
@@ -15,6 +10,19 @@ int scroll_y = 0;
 float cursor_blink_timer = 0.0f;
 bool cursor_visible = true;
 
+
+// Add this helper near your other utilities
+int calculate_gutter_width(DoublyLinkedList *buffer, Font font, float fontSize) {
+    int line_count = 0;
+    Line *cur = buffer->head;
+    while (cur) { line_count++; cur = cur->next; }
+    
+    char num_str[16];
+    snprintf(num_str, sizeof(num_str), "%d", line_count);
+    int gutter_width = MeasureTextEx(font, num_str, fontSize, 1.0f).x + 30; // 20 + 10 padding
+    
+    return gutter_width;
+}
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
@@ -63,6 +71,7 @@ int main(int argc, char *argv[]) {
         // Get actual window dimensions (changes when resized)
         int win_w = GetScreenWidth();
         int win_h = GetScreenHeight();
+        int gutter_width = calculate_gutter_width(buffer, font, fontSize);
         
         float deltaTime = GetFrameTime();
         
@@ -138,6 +147,7 @@ int main(int argc, char *argv[]) {
             if (scroll_y < 0) scroll_y = 0;
         }
         
+        handle_mouse_click(buffer, font, fontSize, line_height, gutter_width, win_h);
 
         // Character input
         int key = GetCharPressed();
@@ -160,7 +170,9 @@ int main(int argc, char *argv[]) {
         ClearBackground(BG_COLOR);
         
         int current_line_idx = get_line_index(buffer, buffer->current_line);
-        int gutter_width = draw_line_numbers(buffer, font, fontSize, line_height, current_line_idx, win_h);
+        // int gutter_width = draw_line_numbers(buffer, font, fontSize, line_height, current_line_idx, win_h);
+        draw_line_numbers(buffer, font, fontSize, line_height, current_line_idx, win_h);
+        
         draw_buffer(buffer, font, fontSize, line_height, gutter_width, win_w, win_h);
         
         // Draw status bar at bottom (using actual window height)
