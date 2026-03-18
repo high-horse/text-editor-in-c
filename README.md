@@ -54,13 +54,14 @@ make build-static // for portability
 
 ## 🎮 Controls
 
-| Key        | Action           |
-| ---------- | ---------------- |
-| Arrow Keys | Move cursor      |
-| Enter      | New line         |
-| Backspace  | Delete character |
-| Ctrl + S   | Save file        |
-| Ctrl + Q   | Quit editor      |
+| Key        | Action                   |
+| ---------- | ------------------------ |
+| Arrow Keys | Move cursor              |
+| Enter      | New line                 |
+| Backspace  | Delete character         |
+| Ctrl + S   | Save file                |
+| Ctrl + Q   | Save file and Quit editor|
+| Ctrl + Q   | Quit editor without saving|
 
 > Controls depend on your implementation and may vary.
 
