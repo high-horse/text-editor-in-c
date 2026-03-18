@@ -259,6 +259,10 @@ int main(int argc, char *argv[]) {
             break;
         }
         
+        if ((IsKeyDown(KEY_LEFT_CONTROL) || IsKeyDown(KEY_RIGHT_CONTROL)) && IsKeyPressed(KEY_W)) {
+            break;
+        }
+        
         // Mouse wheel scrolling
         float wheel = GetMouseWheelMove();
         if (wheel != 0) {
