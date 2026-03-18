@@ -56,4 +56,4 @@ font2header:
 	
 re: clean all
 
-.PHONY: all clean run re
+.PHONY: all clean run re build
