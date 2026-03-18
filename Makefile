@@ -25,12 +25,30 @@ build:
 	gcc -std=c2x -Wall -Wextra -Werror -o bin/main src/main.c src/libs/* -lraylib
 	
 	
-build-static:
+build-static-linux:
 	gcc -std=c2x -Wall -Wextra -Werror \
 	-o build/linux/text \
 	src/main.c src/libs/*.c \
 	-Wl,-Bstatic -lraylib -Wl,-Bdynamic \
 	-lm -ldl -lpthread -lrt -lX11 -lGL
+	
+	
+build-static-macos:
+	clang -std=c2x -Wall -Wextra -Werror \
+    -o build/macos/text \
+    src/main.c src/libs/*.c \
+    -lraylib \
+    -framework OpenGL \
+    -framework Cocoa \
+    -framework IOKit \
+    -framework CoreVideo \
+    -lm -lpthread
+	# gcc -std=c2x -Wall -Wextra -Werror \
+	# -o build/macos/text \
+	# src/main.c src/libs/*.c \
+	# -Wl,-Bstatic -lraylib -Wl,-Bdynamic \
+	# -lm -ldl -lpthread -lrt -lX11 -lGL
+	
 	
 	
 font2header:
