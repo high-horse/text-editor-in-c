@@ -61,7 +61,7 @@ make build-static // for portability
 | Backspace  | Delete character         |
 | Ctrl + S   | Save file                |
 | Ctrl + Q   | Save file and Quit editor|
-| Ctrl + Q   | Quit editor without saving|
+| Ctrl + Q   | Quit editor without saving changes|
 
 > Controls depend on your implementation and may vary.
 
