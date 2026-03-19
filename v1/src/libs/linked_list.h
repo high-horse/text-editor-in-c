@@ -10,7 +10,6 @@
 typedef struct Line{
     char *text;
     size_t len;
-    size_t char_count;
     size_t capacity;
     struct Line *prev;
     struct Line *next;
