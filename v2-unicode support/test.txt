@@ -1,7 +1,7 @@
 📙 
 Hello World
 
-This text file was written in this built text editor.
+This text file was written in this built text editor. // This C header file implements the guts of a multi-line text-editing // widget; you implement display, word-wrapping, and low-level string // insertion/deletion, and stb_textedit will map user inputs into // insertions & deletions, plus updates to the cursor position, // selection state, and undo state.
 
 something more
 

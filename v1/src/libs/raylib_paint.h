@@ -9,6 +9,9 @@
 // Utility: get line index in buffer
 int get_line_index(DoublyLinkedList *buffer, Line *line);
 // Measure width of first 'len' characters using proper font metrics
+// 
+int get_total_content_height(DoublyLinkedList *buffer, int line_height);
+
 float MeasureTextLen(const char *text, size_t len, Font font, float fontSize);
 // Draw line numbers gutter
 int draw_line_numbers(DoublyLinkedList *buffer, Font font, float fontSize, int line_height, int current_line_idx, int win_h);

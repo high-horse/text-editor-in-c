@@ -143,8 +143,19 @@ int main(int argc, char *argv[]) {
         // Mouse wheel scrolling
         float wheel = GetMouseWheelMove();
         if (wheel != 0) {
+            // scroll_y -= (int)(wheel * 30);
+            // if (scroll_y < 0) scroll_y = 0;
+            
             scroll_y -= (int)(wheel * 30);
+                
+            int content_height = get_total_content_height(buffer, line_height);
+            int visible_height = win_h - PADDING_Y * 2;
+            
+            int max_scroll = content_height - visible_height;
+            if (max_scroll < 0) max_scroll = 0;
+        
             if (scroll_y < 0) scroll_y = 0;
+            if (scroll_y > max_scroll) scroll_y = max_scroll;
         }
         
         handle_mouse_click(buffer, font, fontSize, line_height, gutter_width, win_h);

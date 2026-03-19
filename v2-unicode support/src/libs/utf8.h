@@ -34,8 +34,7 @@ size_t utf8_insert_char(char *dest, size_t dest_cap, const char *src, size_t src
                         size_t char_pos, uint32_t codepoint);
 
 // Delete n characters at char position, returns new byte length
-size_t utf8_delete_chars(char *dest, const char *src, size_t src_len,
-                         size_t char_pos, size_t n_chars);
+size_t utf8_delete_chars(char *dest, const char *src, size_t src_len, size_t char_pos, size_t n_chars);
 
 
 #endif

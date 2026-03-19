@@ -25,6 +25,16 @@ float MeasureTextLen(const char *text, size_t len, Font font, float fontSize) {
     return size.x;
 }
 
+int get_total_content_height(DoublyLinkedList *buffer, int line_height) {
+    int lines = 0;
+    Line *cur = buffer->head;
+    while (cur) {
+        lines++;
+        cur = cur->next;
+    }
+    return lines * line_height;
+}
+
 // Draw line numbers gutter
 int draw_line_numbers(DoublyLinkedList *buffer, Font font, float fontSize, int line_height, int current_line_idx, int win_h) {
     int line_count = 0;
@@ -120,6 +130,24 @@ void update_scroll(DoublyLinkedList *buffer, int line_height, int win_h) {
     
     // Clamp scroll
     if (scroll_y < 0) scroll_y = 0;
+    
+    // --- NEW: Clamp scroll (UPPER bound) ---
+    int line_count = 0;
+    Line *cur = buffer->head;
+    while (cur) {
+        line_count++;
+        cur = cur->next;
+    }
+
+    int content_height = line_count * line_height;
+    int max_scroll = content_height - visible_height;
+
+    if (max_scroll < 0) max_scroll = 0;
+    if (scroll_y > max_scroll) scroll_y = max_scroll;
+    
+    if (content_height <= visible_height) {
+        scroll_y = 0;
+    }
 }
 
 void handle_mouse_click(DoublyLinkedList *buffer, Font font, float fontSize,
