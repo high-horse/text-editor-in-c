@@ -4,7 +4,7 @@ A simple graphical text editor written in C using the raylib library. This proje
 
 ## 📸 Screenshot
 
-![Text Editor UI](assets/editor.png)
+![Text Editor UI](v1/assets/editor.png)
 
 ## 🚀 Features
 
