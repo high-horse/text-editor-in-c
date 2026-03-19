@@ -72,7 +72,8 @@ int main(int argc, char *argv[]) {
         int win_w = GetScreenWidth();
         int win_h = GetScreenHeight();
         int gutter_width = calculate_gutter_width(buffer, font, fontSize);
-        
+        float text_area_width = win_w - gutter_width - PADDING_X - 10;
+
         float deltaTime = GetFrameTime();
         
         // --- Update cursor blink ---
@@ -88,13 +89,17 @@ int main(int argc, char *argv[]) {
         // --- Input ---
         if (IsKeyPressed(KEY_DOWN) || (IsKeyDown(KEY_DOWN) && IsKeyPressedRepeat(KEY_DOWN))) {
             move_cursor_down(buffer);
-            update_scroll(buffer, line_height, win_h);
+            // update_scroll(buffer, line_height, win_h);
+            update_scroll(buffer, line_height, win_h, font, fontSize, gutter_width, win_w);
+
             had_input = true;
         }
         
         if (IsKeyPressed(KEY_UP) || (IsKeyDown(KEY_UP) && IsKeyPressedRepeat(KEY_UP))) {
             move_cursor_up(buffer);
-            update_scroll(buffer, line_height, win_h);
+            // update_scroll(buffer, line_height, win_h);
+            update_scroll(buffer, line_height, win_h, font, fontSize, gutter_width, win_w);
+
             had_input = true;
         }
         
@@ -115,7 +120,9 @@ int main(int argc, char *argv[]) {
         
         if (IsKeyPressed(KEY_ENTER) || (IsKeyDown(KEY_ENTER) && IsKeyPressedRepeat(KEY_ENTER))) {
             insert_newline(buffer);
-            update_scroll(buffer, line_height, win_h);
+            // update_scroll(buffer, line_height, win_h);
+            update_scroll(buffer, line_height, win_h, font, fontSize, gutter_width, win_w);
+
             had_input = true;
         }
         
@@ -158,7 +165,8 @@ int main(int argc, char *argv[]) {
             if (scroll_y > max_scroll) scroll_y = max_scroll;
         }
         
-        handle_mouse_click(buffer, font, fontSize, line_height, gutter_width, win_h);
+        // handle_mouse_click(buffer, font, fontSize, line_height, gutter_width, win_h);
+        handle_mouse_click(buffer, font, fontSize, line_height, gutter_width, win_h, win_w);
 
         // Character input
         int key = GetCharPressed();
@@ -182,7 +190,8 @@ int main(int argc, char *argv[]) {
         
         int current_line_idx = get_line_index(buffer, buffer->current_line);
         // int gutter_width = draw_line_numbers(buffer, font, fontSize, line_height, current_line_idx, win_h);
-        draw_line_numbers(buffer, font, fontSize, line_height, current_line_idx, win_h);
+        // draw_line_numbers(buffer, font, fontSize, line_height, current_line_idx, win_h);
+        draw_line_numbers(buffer, font, fontSize, line_height, current_line_idx, win_h, text_area_width);
         
         draw_buffer(buffer, font, fontSize, line_height, gutter_width, win_w, win_h);
         
